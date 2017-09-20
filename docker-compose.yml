@@ -1,0 +1,31 @@
+version: "3"
+services:
+
+  janus:
+    image: quay.io/hellofresh/janus
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    depends_on:
+      - api-task
+      - api-auth
+      - api-public
+    volumes:
+      - ./janus.toml:/etc/janus/janus.toml
+      - ./apis:/etc/janus/apis
+      - ./auth:/etc/janus/auth
+
+  api-task:
+    image: img-task-go
+    ports:
+      - "9089:8000"
+
+  api-auth:
+    image: img-auth-go
+    ports:
+      - "9088:8000"
+
+  api-public:
+    image: img-public-go
+    ports:
+      - "9087:8000"

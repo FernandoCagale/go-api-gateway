@@ -1,0 +1,12 @@
+{
+    "name" : "public",
+    "active" : true,
+    "proxy" : {
+        "listen_path" : "/public",
+        "upstream_url" : "http://api-public:8000/public",
+        "strip_path" : false,
+        "append_path" : false,
+        "preserve_host" : false,
+        "methods" : ["GET"]
+    }
+}
