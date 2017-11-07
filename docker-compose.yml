@@ -15,10 +15,19 @@ services:
       - ./apis:/etc/janus/apis
       - ./auth:/etc/janus/auth
 
+  api-postgres:
+    image: sameersbn/postgresql:9.6-2
+    environment:
+      - DB_USER=test
+      - DB_PASS=test
+      - DB_NAME=test
+
   api-task:
     image: img-task-go
     ports:
-      - "9089:8000"
+      - "9089:3000"
+    depends_on:
+      - api-postgres
 
   api-auth:
     image: img-auth-go

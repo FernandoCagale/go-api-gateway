@@ -3,11 +3,15 @@
     "active" : true,
     "proxy" : {
         "listen_path" : "/tasks/*",
-        "upstream_url" : "http://api-task:8000/tasks/",
+        "upstream_url" : "http://api-task:3000/v1/tasks/",
         "strip_path" : true,
         "append_path" : false,
         "preserve_host" : false,
         "methods" : ["GET", "POST", "PUT", "DELETE"]
+    },
+    "health_check": {
+        "url": "http://api-task:3000/health",
+        "timeout": "3"
     },
     "plugins": [
         {
