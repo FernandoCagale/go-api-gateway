@@ -24,6 +24,9 @@ services:
 
   api-task:
     image: img-task-go
+    environment:
+      - DATASTORE_URL=postgresql://test:test@api-postgres:5432/test?sslmode=disable
+      - PORT=3000
     ports:
       - "9089:3000"
     depends_on:
