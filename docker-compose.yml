@@ -22,6 +22,9 @@ services:
       - DB_PASS=test
       - DB_NAME=test
 
+  api-mongo:
+    image: mongo
+
   api-task:
     image: img-task-go
     environment:
@@ -39,5 +42,10 @@ services:
 
   api-public:
     image: img-public-go
+    environment:
+      - DATASTORE_URL=api-mongo
+      - PORT=8000
     ports:
       - "9087:8000"
+    depends_on:
+      - api-mongo      
